@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlanetsContext from './PlanetsContext';
 
@@ -8,6 +8,15 @@ const PlanetsProvider = ({ children }) => {
   const contextValue = {
     data: planets,
   };
+
+  useEffect(() => {
+    async function responseApi() {
+      const responsePlanets = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+      const { results } = await responsePlanets.json();
+      setPlanets(results);
+    }
+    responseApi();
+  }, [setPlanets]);
 
   return (
     <PlanetsContext.Provider value={ contextValue }>

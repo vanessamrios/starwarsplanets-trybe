@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
+import PlanetsProvider from './PlanetsProvider';
 
 function App() {
   return (
-    <span>Hello, App!</span>
+    <PlanetsProvider>
+      <div>Vanessa</div>
+    </PlanetsProvider>
   );
 }
 
