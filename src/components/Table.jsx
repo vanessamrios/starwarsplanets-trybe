@@ -1,6 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PlanetsContext from '../PlanetsContext';
 
 export default function Table() {
+  const { data } = useContext(PlanetsContext);
+  // data é onde o requisito pede para guardar a lista de planetas recebida na requisição
+  const renderPlanet = (planet) => (
+    <tr key={ planet.url }>
+      <td>{ planet.name }</td>
+      <td>{ planet.rotation_period }</td>
+      <td>{ planet.orbital_period }</td>
+      <td>{ planet.diameter }</td>
+      <td>{ planet.climate }</td>
+      <td>{ planet.gravity }</td>
+      <td>{ planet.terrain }</td>
+      <td>{ planet.surface_water }</td>
+      <td>{ planet.population }</td>
+      <td>{ planet.films }</td>
+      <td>{ planet.created }</td>
+      <td>{ planet.edited }</td>
+      <td>{ planet.url }</td>
+    </tr>
+  );
+
   return (
     <div>
       <table border="1">
@@ -22,7 +43,7 @@ export default function Table() {
           </tr>
         </thead>
         <tbody>
-          {/* { expenses.map((expense) => renderExpense(expense)) } */}
+          { data.map((planet) => renderPlanet(planet)) }
         </tbody>
       </table>
     </div>
