@@ -24,6 +24,7 @@ export default function Table() {
 
   return (
     <div>
+      <input type="text" data-testid="name-filter" />
       <table border="1">
         <thead>
           <tr>
