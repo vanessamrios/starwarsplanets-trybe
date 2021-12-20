@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PlanetsContext from '../PlanetsContext';
 
 export default function Table() {
-  const { data } = useContext(PlanetsContext);
+  const { data, addFilterByName } = useContext(PlanetsContext);
   // data é onde o requisito pede para guardar a lista de planetas recebida na requisição
   const renderPlanet = (planet) => (
     <tr key={ planet.url }>
@@ -24,7 +24,11 @@ export default function Table() {
 
   return (
     <div>
-      <input type="text" data-testid="name-filter" />
+      <input
+        type="text"
+        data-testid="name-filter"
+        onChange={ (event) => addFilterByName(event.target.value) }
+      />
       <table border="1">
         <thead>
           <tr>

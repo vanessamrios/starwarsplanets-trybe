@@ -4,9 +4,18 @@ import PlanetsContext from './PlanetsContext';
 
 const PlanetsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
+  const [name, setName] = useState('');
+
+  const addFilterByName = (value) => {
+    setName(value);
+  };
 
   const contextValue = {
-    data: planets,
+    data: planets.filter((planet) => planet.name.includes(name)),
+    filterByName: {
+      name,
+    },
+    addFilterByName,
   };
 
   useEffect(() => {
