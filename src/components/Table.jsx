@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import PlanetsContext from '../PlanetsContext';
 
 export default function Table() {
-  const [column, setColumn] = useState('');
-  const [comparison, setComparison] = useState('');
+  const [column, setColumn] = useState('population');
+  const [comparison, setComparison] = useState('maior que');
   const [number, setNumber] = useState(0);
 
   const { data, addFilterByName, addFilterNumericValues } = useContext(PlanetsContext);
@@ -40,6 +40,7 @@ export default function Table() {
             id="column"
             data-testid="column-filter"
             name="column"
+            value={ column }
             onChange={ (event) => setColumn(event.target.value) }
           >
             <option>population</option>
@@ -55,6 +56,7 @@ export default function Table() {
             id="comparison"
             data-testid="comparison-filter"
             name="comparison"
+            value={ comparison }
             onChange={ (event) => setComparison(event.target.value) }
           >
             <option>maior que</option>
