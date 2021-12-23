@@ -29,6 +29,39 @@ export default function Table() {
         data-testid="name-filter"
         onChange={ (event) => addFilterByName(event.target.value) }
       />
+      <section>
+        <label htmlFor="column">
+          Filtrar por:
+          <select
+            id="column"
+            data-testid="column-filter"
+            name="column"
+          >
+            <option>population</option>
+            <option>orbital_period</option>
+            <option>diameter</option>
+            <option>rotation_period</option>
+            <option>surface_water</option>
+          </select>
+        </label>
+        <label htmlFor="comparison">
+          Comparar se é:
+          <select
+            id="comparison"
+            data-testid="comparison-filter"
+            name="comparison"
+          >
+            <option>maior que</option>
+            <option>menor que</option>
+            <option>igual a</option>
+          </select>
+        </label>
+        <input
+          type="number"
+          data-testid="value-filter"
+        />
+        <button type="button" data-testid="button-filter">Filtrar</button>
+      </section>
       <table border="1">
         <thead>
           <tr>

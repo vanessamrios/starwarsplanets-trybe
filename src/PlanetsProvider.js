@@ -16,6 +16,13 @@ const PlanetsProvider = ({ children }) => {
       name,
     },
     addFilterByName,
+    filterByNumericValues: [
+      {
+        column: '',
+        comparison: '',
+        value: '',
+      },
+    ],
   };
 
   useEffect(() => {
