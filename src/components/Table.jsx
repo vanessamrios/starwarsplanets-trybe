@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PlanetsContext from '../PlanetsContext';
 
 export default function Table() {
-  const { data, addFilterByName } = useContext(PlanetsContext);
+  const [column, setColumn] = useState('');
+  const [comparison, setComparison] = useState('');
+  const [number, setNumber] = useState(0);
+
+  const { data, addFilterByName, addFilterNumericValues } = useContext(PlanetsContext);
   // data é onde o requisito pede para guardar a lista de planetas recebida na requisição
   const renderPlanet = (planet) => (
     <tr key={ planet.url }>
@@ -36,6 +40,7 @@ export default function Table() {
             id="column"
             data-testid="column-filter"
             name="column"
+            onChange={ (event) => setColumn(event.target.value) }
           >
             <option>population</option>
             <option>orbital_period</option>
@@ -50,6 +55,7 @@ export default function Table() {
             id="comparison"
             data-testid="comparison-filter"
             name="comparison"
+            onChange={ (event) => setComparison(event.target.value) }
           >
             <option>maior que</option>
             <option>menor que</option>
@@ -58,9 +64,18 @@ export default function Table() {
         </label>
         <input
           type="number"
+          name="number"
+          value={ number }
           data-testid="value-filter"
+          onChange={ (event) => setNumber(event.target.value) }
         />
-        <button type="button" data-testid="button-filter">Filtrar</button>
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ () => addFilterNumericValues({ column, comparison, value: number }) }
+        >
+          Filtrar
+        </button>
       </section>
       <table border="1">
         <thead>

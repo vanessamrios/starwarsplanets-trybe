@@ -5,9 +5,14 @@ import PlanetsContext from './PlanetsContext';
 const PlanetsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [name, setName] = useState('');
+  const [numericValues, setNumericValues] = useState({});
 
   const addFilterByName = (value) => {
     setName(value);
+  };
+
+  const addFilterNumericValues = (value) => {
+    setNumericValues(value);
   };
 
   const contextValue = {
@@ -16,12 +21,9 @@ const PlanetsProvider = ({ children }) => {
       name,
     },
     addFilterByName,
+    addFilterNumericValues,
     filterByNumericValues: [
-      {
-        column: '',
-        comparison: '',
-        value: '',
-      },
+      numericValues,
     ],
   };
 
