@@ -6,6 +6,7 @@ const PlanetsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [name, setName] = useState('');
   const [numericValues, setNumericValues] = useState(null);
+  const [filters, setFilters] = useState([]);
   // o valor inicial é null porque na função filterByNumeric a primeira condição se o objeto existe e é preciso que ele seja nulo para que ele já seja verdade.
 
   const addFilterByName = (value) => {
@@ -14,24 +15,26 @@ const PlanetsProvider = ({ children }) => {
 
   const addFilterNumericValues = (value) => {
     setNumericValues(value);
+    setFilters([...filters, value]);
   };
 
   const filterByName = (planet) => planet.name.includes(name);
 
   const filterByNumeric = (planet) => {
-    if (!numericValues) {
+    if (!filters.length) {
       return true;
     }
-
-    const columnValue = Number(planet[numericValues.column]);
-    const inputValue = Number(numericValues.value);
-    if (numericValues.comparison === 'maior que') {
+    const lastFilter = filters[filters.length - 1];
+    const columnValue = Number(planet[lastFilter.column]);
+    const inputValue = Number(lastFilter.value);
+    const comparisonValue = lastFilter.comparison;
+    if (comparisonValue === 'maior que') {
       return columnValue > inputValue;
     }
-    if (numericValues.comparison === 'menor que') {
+    if (comparisonValue === 'menor que') {
       return columnValue < inputValue;
     }
-    if (numericValues.comparison === 'igual a') {
+    if (comparisonValue === 'igual a') {
       return columnValue === inputValue;
     }
   };
