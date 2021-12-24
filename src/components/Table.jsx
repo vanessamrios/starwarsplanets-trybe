@@ -5,6 +5,7 @@ export default function Table() {
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [number, setNumber] = useState(0);
+  const [columnOptions, setColumnOptions] = useState(['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'])
 
   const { data, addFilterByName, addFilterNumericValues } = useContext(PlanetsContext);
   // data é onde o requisito pede para guardar a lista de planetas recebida na requisição
@@ -43,11 +44,7 @@ export default function Table() {
             value={ column }
             onChange={ (event) => setColumn(event.target.value) }
           >
-            <option>population</option>
-            <option>orbital_period</option>
-            <option>diameter</option>
-            <option>rotation_period</option>
-            <option>surface_water</option>
+            {columnOptions.map((option) => (<option key={ option }>{option}</option>)) }
           </select>
         </label>
         <label htmlFor="comparison">
