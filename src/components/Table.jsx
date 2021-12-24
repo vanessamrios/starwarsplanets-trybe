@@ -5,9 +5,13 @@ export default function Table() {
   const [column, setColumn] = useState('population');
   const [comparison, setComparison] = useState('maior que');
   const [number, setNumber] = useState(0);
-  const [columnOptions, setColumnOptions] = useState(['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'])
+  const [columnOptions] = useState(
+    ['population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'],
+  );
 
-  const { data, addFilterByName, addFilterNumericValues } = useContext(PlanetsContext);
+  const {
+    data, addFilterByName, addFilterNumericValues, filterByNumericValues,
+  } = useContext(PlanetsContext);
   // data é onde o requisito pede para guardar a lista de planetas recebida na requisição
   const renderPlanet = (planet) => (
     <tr key={ planet.url }>
@@ -44,7 +48,17 @@ export default function Table() {
             value={ column }
             onChange={ (event) => setColumn(event.target.value) }
           >
-            {columnOptions.map((option) => (<option key={ option }>{option}</option>)) }
+            {columnOptions
+              .filter((option) => {
+                if (!filterByNumericValues.length) {
+                  return true;
+                }
+                const filterFound = filterByNumericValues
+                  .find((filter) => filter.column === option);
+
+                return !filterFound;
+              })
+              .map((option) => (<option key={ option }>{option}</option>)) }
           </select>
         </label>
         <label htmlFor="comparison">
