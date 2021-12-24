@@ -74,7 +74,12 @@ export default function Table() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => addFilterNumericValues({ column, comparison, value: number }) }
+          onClick={ () => {
+            addFilterNumericValues({ column, comparison, value: number });
+            setColumn('population');
+            setComparison('maior que');
+            setNumber(0);
+          } }
         >
           Filtrar
         </button>
