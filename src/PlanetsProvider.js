@@ -5,16 +5,13 @@ import PlanetsContext from './PlanetsContext';
 const PlanetsProvider = ({ children }) => {
   const [planets, setPlanets] = useState([]);
   const [name, setName] = useState('');
-  const [numericValues, setNumericValues] = useState(null);
   const [filters, setFilters] = useState([]);
-  // o valor inicial é null porque na função filterByNumeric a primeira condição se o objeto existe e é preciso que ele seja nulo para que ele já seja verdade.
 
   const addFilterByName = (value) => {
     setName(value);
   };
 
   const addFilterNumericValues = (value) => {
-    setNumericValues(value);
     setFilters([...filters, value]);
   };
 
@@ -46,9 +43,7 @@ const PlanetsProvider = ({ children }) => {
     },
     addFilterByName,
     addFilterNumericValues,
-    filterByNumericValues: [
-      numericValues,
-    ],
+    filterByNumericValues: filters,
   };
 
   useEffect(() => {
