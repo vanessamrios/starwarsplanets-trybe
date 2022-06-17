@@ -1,5 +1,7 @@
 # Projeto Starwars Planets Search
 
+https://starwarsplanets-trybe.vercel.app/
+
 Este projeto, realizado durante o modulo de Frontend do curso de desenvolvimento de software da Trybe, implementa uma série de filtros de planetas do universo de Star Wars usando **dados dinâmicos  requisitados de uma API** e **Context API e Hooks** para controlar os estados globais.
 
 - A aplicação foi desenvolvida em `React` e usa `Context API` como ferramenta de **manipulação de estado**.
